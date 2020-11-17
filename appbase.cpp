@@ -2,7 +2,6 @@
 #include "appwin.inc"
 #include "appbase.h"
 
-
 ApplicationBase * ApplicationBase::app = NULL;
 ///////////////////////////////////////////////////////////////////////////////
 ApplicationBase * ApplicationBase::CreateSingleton()
@@ -23,7 +22,6 @@ ApplicationBase * ApplicationBase::GetSingleton()
 ApplicationBase::ApplicationBase():
 running(false), window(NULL)
 {
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -37,7 +35,7 @@ ApplicationBase::~ApplicationBase()
 void ApplicationBase::Init()
 {
     printf("ApplicationBase Init\n");
-    window = new AppWindow(0,0,640,480,"AppBase");
+    window = new AppWindow(100,100,400,400,0,"AppBase");
     running = window->WindowAvailable();
 }
 
@@ -64,7 +62,7 @@ void ApplicationBase::Render()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void ApplicationBase::CloseWindow()
+void ApplicationBase::OnCloseWindow()
 {
     running = false;
     //delete (window);
@@ -72,9 +70,62 @@ void ApplicationBase::CloseWindow()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void ApplicationBase::SetWindowSize(int x, int y)
+void ApplicationBase::OnSetWindowSize(int x, int y)
 {
     printf("Window size: x = %d, y = %d\n", x, y);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void ApplicationBase::OnDraw()
+{
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void ApplicationBase::OnKeyDown(unsigned char key)
+{
+    printf("OnKeyDown: key = %d\n",key);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void ApplicationBase::OnKeyUp(unsigned char key)
+{
+    printf("OnKeyUp: key = %d\n", key);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void ApplicationBase::OnWindowActive(bool active)
+{
+    printf("OnWindowAcitve: active = %d\n", active);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void ApplicationBase::OnMouseMove(int x, int y)
+{
+    //printf("OnMouseMove: x = %d, y = %d\n", x, y);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void ApplicationBase::OnMouseMove(ButtonType btype, int x, int y)
+{
+    //printf("OnMouseMove: btn = %d, x = %d, y = %d\n",(int)btype, x, y);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void ApplicationBase::OnMouseButtonDown(ButtonType btype, int x, int y)
+{
+    printf("OnMouseButtonDown: btn = %d, x = %d, y = %d\n",(int)btype,x,y);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void ApplicationBase::OnMouseButtonUp(ButtonType btype, int x, int y)
+{
+    printf("OnMouseButtonUp: btn = %d, x = %d, y = %d\n",(int)btype, x, y);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void ApplicationBase::OnMouseButtonDblClk(ButtonType btype, int x, int y)
+{
+    printf("OnMouseDblClk: btn = %d, x = %d, y = %d\n",(int)btype, x, y);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
