@@ -8,7 +8,7 @@
 class AppWindow
 {
 public:
-    AppWindow(int x, int y, int width, int height, const char * title);
+    AppWindow(int x, int y, int width, int height, int flgs, const char * wname);
     ~AppWindow();
 
     bool WindowAvailable() const;
@@ -16,14 +16,19 @@ public:
     void ProcessEvents();
 
 protected:
-    bool Create(int x, int y, int width, int height, const char * title);
+    bool Create(int x, int y, int width, int height, int flags, const char * wname);
     bool Destroy();
 
     Display * display;
     Window winId;
 
     bool uname_ok;
-    Atom WM_DELETE_WINDOW; 
-
+    Atom wmDeleteWindow; 
+    Atom wmState;
+    Atom wmStateHidden;
+    Atom wmStateFullscreen;
+    Atom wmStateFocused;
+    Atom wmStateMaxHori;
+    Atom wmStateMaxVert;
 };
 ///////////////////////////////////////////////////////////////////////////////
